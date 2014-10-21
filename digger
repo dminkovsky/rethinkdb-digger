@@ -1,5 +1,7 @@
 #!/bin/bash
 DUG=$(dig +short A rethinkdb-29015.skydns.local)
 if [[ -n "$DUG" ]]; then
-    printf -- '--join %s ' "$DUG"
+    for IP in $DUG; do
+        printf -- '--join %s ' "$IP"
+    done
 fi
